@@ -1,0 +1,78 @@
+.menu__grid {
+  display: grid;
+  gap: clamp(1rem, 0.5rem + 1.6vw, 1.75rem);
+  grid-template-columns: 1fr;
+}
+
+.menu__card {
+  min-height: 100%;
+}
+
+.menu__inner {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-content: start;
+  gap: 0.25rem 1rem;
+  padding: clamp(1.75rem, 1rem + 2vw, 2.5rem) clamp(1.5rem, 1rem + 1.6vw, 2rem);
+}
+
+/* The fan is struck from the bottom-right corner (flipped on its vertical axis)
+   so it fills the card's foot instead of colliding with the price. */
+.menu__flourish {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 44px;
+  height: 44px;
+  scale: 1 -1;
+  color: var(--accent);
+  opacity: 0.42;
+}
+
+.menu__name {
+  grid-column: 1;
+  max-width: 14ch;
+  /* Two lines' worth, so the rule under every card lands on the same line. */
+  min-height: 2.3em;
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+.menu__price {
+  grid-column: 2;
+  justify-self: end;
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  line-height: 1.15;
+  color: var(--accent);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.menu__note {
+  grid-column: 1 / -1;
+  margin-top: 1.125rem;
+  padding-top: 1.125rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+@media (min-width: 620px) {
+  .menu__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1040px) {
+  .menu__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

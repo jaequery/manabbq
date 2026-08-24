@@ -1,0 +1,254 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Fixed header height + a breath, so anchored sections never land under the bar. */
+  scroll-padding-top: calc(var(--nav-h) + var(--nav-links-h) + 1.5rem);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-body);
+  font-weight: 400;
+  line-height: 1.65;
+  /* 360px must never scroll sideways. */
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+ul,
+ol,
+dl,
+dd {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+/* --- Focus ------------------------------------------------------------- */
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius);
+}
+
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: 0.5rem;
+  z-index: 100;
+  transform: translate(-50%, -200%);
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-size: var(--step-label);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: transform var(--t-fast) var(--ease);
+}
+
+.skip-link:focus-visible {
+  transform: translate(-50%, 0);
+}
+
+/* --- Type ------------------------------------------------------------- */
+
+.display,
+.section-title,
+.eyebrow-serif {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.display {
+  font-size: var(--step-display);
+  letter-spacing: -0.035em;
+}
+
+.section-title {
+  font-size: var(--step-section);
+  letter-spacing: -0.025em;
+}
+
+.lead {
+  font-size: var(--step-lead);
+  color: var(--muted);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.label {
+  display: inline-block;
+  font-size: var(--step-label);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.label--muted {
+  color: var(--muted);
+}
+
+/* --- Layout ----------------------------------------------------------- */
+
+.shell {
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--section-y);
+}
+
+.section--tight {
+  padding-block: calc(var(--section-y) * 0.72);
+}
+
+.section-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+  margin-bottom: clamp(2.5rem, 1rem + 4vw, 4.5rem);
+}
+
+/* --- Rules & ornament plumbing ---------------------------------------- */
+
+.rule {
+  height: var(--rule);
+  border: 0;
+  background: var(--accent);
+  opacity: 0.55;
+}
+
+.rule--soft {
+  background: var(--border);
+  opacity: 1;
+}
+
+.rule--short {
+  width: 72px;
+  margin-inline: auto;
+}
+
+/* --- Scroll reveal ----------------------------------------------------- */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity var(--t-reveal) var(--ease),
+    transform var(--t-reveal) var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- Reduced motion ---------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  /* biome-ignore-start lint/complexity/noImportantStyles: a reduced-motion reset
+     has to outrank every animation and transition declared elsewhere on the
+     page, including inline reveal delays. !important is the correct tool here. */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* biome-ignore-end lint/complexity/noImportantStyles: see above */
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --- Utilities ---------------------------------------------------------- */
+
+.u-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (min-width: 760px) {
+  html {
+    scroll-padding-top: calc(var(--nav-h) + 1.5rem);
+  }
+}
+
+/* Clears the fixed header. The header is one 72px row on desktop and gains a
+   44px links row below 760px, so the offset tracks it. */
+.page {
+  padding-top: calc(var(--nav-h) + var(--nav-links-h));
+}
+
+@media (min-width: 760px) {
+  .page {
+    padding-top: var(--nav-h);
+  }
+}

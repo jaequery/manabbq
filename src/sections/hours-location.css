@@ -1,0 +1,78 @@
+.hours__grid {
+  display: grid;
+  gap: clamp(2.5rem, 1rem + 5vw, 4.5rem);
+  align-items: center;
+}
+
+.hours__title {
+  margin-block: 1.25rem 2rem;
+  max-width: 16ch;
+}
+
+.hours__address {
+  font-style: normal;
+  font-size: var(--step-lead);
+  line-height: 1.8;
+  color: var(--ink);
+}
+
+.hours__tel {
+  display: inline-block;
+  margin-top: 0.25rem;
+  border-bottom: 1px solid var(--accent-40);
+  transition: border-color var(--t-fast) var(--ease);
+}
+
+.hours__tel:hover {
+  border-bottom-color: var(--accent);
+}
+
+.hours__list {
+  margin-top: 2.25rem;
+  border-top: 1px solid var(--border);
+}
+
+.hours__row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-block: 0.875rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9375rem;
+}
+
+.hours__row dt {
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.hours__row dd {
+  margin: 0;
+  color: var(--ink);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.hours__note {
+  margin-top: 1.75rem;
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+
+.hours__map {
+  background: var(--surface);
+  border: 1px solid var(--accent-24);
+  padding: clamp(1rem, 0.5rem + 2vw, 2rem);
+}
+
+.hours__block {
+  width: 100%;
+  height: auto;
+  color: var(--accent);
+}
+
+@media (min-width: 900px) {
+  .hours__grid {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  }
+}

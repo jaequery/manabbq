@@ -1,0 +1,38 @@
+.reserve {
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding-block: clamp(3.5rem, 2rem + 6vw, 6.5rem);
+}
+
+/* On the gold band the accent *is* the ground, so every mark switches to dark
+   ink. Descendant selectors, so this holds whatever order the sheets land in. */
+.reserve .label,
+.reserve .section-title {
+  color: var(--accent-ink);
+}
+
+.reserve__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.reserve__title {
+  margin-block: 1.25rem 1rem;
+  max-width: 18ch;
+}
+
+.reserve__copy {
+  max-width: 48ch;
+  font-size: var(--step-lead);
+  text-wrap: pretty;
+}
+
+.reserve__cta {
+  margin-top: clamp(2rem, 1rem + 2.5vw, 2.75rem);
+}
+
+.reserve :focus-visible {
+  outline-color: var(--accent-ink);
+}

@@ -1,0 +1,72 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: clamp(5rem, 2rem + 12vw, 10rem) clamp(5rem, 2rem + 11vw, 9rem);
+  text-align: center;
+}
+
+.hero__ornament {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: min(150vw, 1180px);
+  aspect-ratio: 1;
+  z-index: -1;
+  color: var(--accent);
+  /* Alpha-only mask: fades the burst out before it can fight the copy for
+     attention. The colour here is a mask channel, not a palette value. */
+  mask-image: radial-gradient(closest-side, black 22%, rgb(0 0 0 / 0.35) 52%, transparent 78%);
+}
+
+.hero__sunburst {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.16;
+}
+
+.hero__rings {
+  position: absolute;
+  inset: 12%;
+  width: 76%;
+  height: 76%;
+  opacity: 0.4;
+}
+
+.hero__shell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero__eyebrow {
+  margin-bottom: clamp(1.75rem, 1rem + 2vw, 2.75rem);
+}
+
+.hero__rule {
+  width: min(100%, 420px);
+  margin: 0;
+  align-self: center;
+}
+
+.hero__title {
+  max-width: 14ch;
+  margin-block: clamp(1.75rem, 1rem + 2.5vw, 3rem);
+}
+
+.hero__lead {
+  /* Wide enough that the subhead sets on a single line on desktop. */
+  max-width: 68ch;
+  margin-bottom: clamp(1.75rem, 1rem + 2.5vw, 3rem);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: clamp(2rem, 1rem + 3vw, 3.25rem);
+}
