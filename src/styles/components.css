@@ -1,0 +1,201 @@
+/* --- Stepped-corner frame ---------------------------------------------
+   A ziggurat corner drawn with clip-path. Two stacked layers — a gold sheet
+   and a surface sheet inset by 1px — give a true 1px stepped border without
+   ever resorting to a shadow. */
+
+.stepped {
+  --step-a: 7px;
+  --step-b: 14px;
+  clip-path: polygon(
+    0 var(--step-b),
+    var(--step-a) var(--step-b),
+    var(--step-a) var(--step-a),
+    var(--step-b) var(--step-a),
+    var(--step-b) 0,
+    calc(100% - var(--step-b)) 0,
+    calc(100% - var(--step-b)) var(--step-a),
+    calc(100% - var(--step-a)) var(--step-a),
+    calc(100% - var(--step-a)) var(--step-b),
+    100% var(--step-b),
+    100% calc(100% - var(--step-b)),
+    calc(100% - var(--step-a)) calc(100% - var(--step-b)),
+    calc(100% - var(--step-a)) calc(100% - var(--step-a)),
+    calc(100% - var(--step-b)) calc(100% - var(--step-a)),
+    calc(100% - var(--step-b)) 100%,
+    var(--step-b) 100%,
+    var(--step-b) calc(100% - var(--step-a)),
+    var(--step-a) calc(100% - var(--step-a)),
+    var(--step-a) calc(100% - var(--step-b)),
+    0 calc(100% - var(--step-b))
+  );
+}
+
+.card {
+  background: var(--accent-40);
+  padding: 1px;
+  transition: background var(--t-fast) var(--ease);
+}
+
+.card__body {
+  background: var(--surface);
+  height: 100%;
+}
+
+.card:hover,
+.card:focus-within {
+  background: var(--accent);
+}
+
+/* --- Buttons ------------------------------------------------------------ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  min-height: var(--control-h);
+  padding-inline: clamp(1.25rem, 0.9rem + 1.2vw, 2rem);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius);
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    transform var(--t-fast) var(--ease),
+    border-color var(--t-fast) var(--ease),
+    background-color var(--t-fast) var(--ease),
+    color var(--t-fast) var(--ease);
+}
+
+.btn:hover {
+  transform: scale(1.02);
+}
+
+.btn:active {
+  transform: scale(0.995);
+}
+
+.btn--fill {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.btn--fill:hover {
+  border-color: var(--ink);
+}
+
+.btn--ghost {
+  border-color: var(--accent-40);
+  color: var(--accent);
+}
+
+.btn--ghost:hover {
+  border-color: var(--accent);
+}
+
+/* Sits on the full-width gold band — dark ink on gold. */
+.btn--ink {
+  border-color: var(--ink-on-accent-40);
+  color: var(--accent-ink);
+}
+
+.btn--ink:hover {
+  border-color: var(--accent-ink);
+}
+
+.btn--sm {
+  min-height: 40px;
+  padding-inline: 1rem;
+  font-size: 0.75rem;
+}
+
+/* --- Inputs ------------------------------------------------------------- */
+
+.field {
+  flex: 1 1 12rem;
+  min-width: 0;
+  height: var(--input-h);
+  padding: 0 0.25rem;
+  border: 0;
+  border-bottom: 1px solid var(--accent-40);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: 0.9375rem;
+  transition: border-color var(--t-fast) var(--ease);
+}
+
+.field::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+.field:hover,
+.field:focus {
+  border-bottom-color: var(--accent);
+}
+
+.field:focus-visible {
+  outline-offset: 4px;
+}
+
+/* --- Underlined link ---------------------------------------------------- */
+
+.ulink {
+  position: relative;
+  display: inline-block;
+  padding-block: 0.35em;
+  color: var(--ink);
+  font-size: var(--step-label);
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.ulink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--t-underline) ease;
+}
+
+.ulink:hover,
+.ulink:focus-visible {
+  color: var(--accent);
+}
+
+.ulink:hover::after,
+.ulink:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* --- Ceremonial rotation: 360deg over 360s = ~1deg per second ----------- */
+
+@keyframes deco-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  animation: deco-spin var(--spin) linear infinite;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.spin--reverse {
+  animation-direction: reverse;
+}

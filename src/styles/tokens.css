@@ -1,0 +1,54 @@
+/* ---------------------------------------------------------------------------
+   Restaurant Theme 1 — "Gilded deco lounge"
+
+   The seven values below are the *only* colours in this build. Every other
+   colour on the page is either one of these, a translucent glaze mixed from one
+   of these via color-mix(), `transparent`, or `currentColor`. There is exactly
+   one accent; emphasis elsewhere is earned with weight, scale and space.
+   --------------------------------------------------------------------------- */
+
+:root {
+  --bg: #14100c;
+  --surface: #1e1712;
+  --ink: #f3e9d8;
+  --muted: #b8a78c;
+  --accent: #d4af37;
+  --accent-ink: #1a1206;
+  --border: #3a2e1f;
+
+  /* Glazes — all struck from the accent, never a second hue. */
+  --accent-06: color-mix(in srgb, var(--accent) 6%, transparent);
+  --accent-12: color-mix(in srgb, var(--accent) 12%, transparent);
+  --accent-24: color-mix(in srgb, var(--accent) 24%, transparent);
+  --accent-40: color-mix(in srgb, var(--accent) 40%, transparent);
+  --accent-64: color-mix(in srgb, var(--accent) 64%, transparent);
+  --ink-on-accent-40: color-mix(in srgb, var(--accent-ink) 40%, transparent);
+
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Jost", "Helvetica Neue", Arial, sans-serif;
+
+  /* Display headings run 56–96px; the clamp keeps 360px viewports honest. */
+  --step-display: clamp(2.75rem, 1.4rem + 6vw, 6rem);
+  --step-section: clamp(2rem, 1.2rem + 3.2vw, 3.5rem);
+  --step-lead: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  --step-body: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --step-label: 0.8125rem;
+
+  --rule: 1px;
+  --radius: 2px;
+  --control-h: 48px;
+  --input-h: 44px;
+  --nav-h: 72px;
+  --nav-links-h: 44px;
+
+  --shell: 1200px;
+  --gutter: clamp(1.25rem, 0.5rem + 3vw, 4rem);
+  --section-y: clamp(4.5rem, 2rem + 9vw, 9.5rem);
+
+  /* Ceremonial motion. Every duration below is nulled under reduced motion. */
+  --t-fast: 200ms;
+  --t-underline: 250ms;
+  --t-reveal: 400ms;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --spin: 360s;
+}
